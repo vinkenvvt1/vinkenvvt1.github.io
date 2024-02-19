@@ -1,3 +1,3 @@
-A website of juncy.cn
+juncy.cn的网站存放地
 
-I share my daily life through this website.
+一个简单的主页 没有花哨的功能
