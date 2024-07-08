@@ -16,9 +16,10 @@ p {line-height:1em;}
 </head>
 <body>
 <div class="container">
-  <img src="1.jpg">
-  <div class="text">
-    <p class="lastDiv"></p>
+<img src="1.jpg">
+
+<div class="text">
+<p class="lastDiv"></p>
 <p class="sub_text firstDiv"></p>
 <a class="button_primary_0" href="music/index_n.html">song</a>
 <a class="button_primary_0" href="photo/index_p.html">photo</a>
@@ -29,35 +30,37 @@ p {line-height:1em;}
 <a class="button_primary_0" href="bh3/index_bh3.html">bh3</a>
 <a class="button_primary_0" href="eng_word/plants.html">words</a>
 <a class="button_primary_0" href="about/index.html">about</a>
-  </div>
-  <div class="icon">
+</div>
+  
+<div class="icon">
 <a href="http://192.168.0.200/bbs/viewforum.php?f=2"><img src="5_3.jpg"></a>
-    <a href="http://baidu.com"><img src="2.jpg"></a>
-    <a href="http://taobao.com"><img src="6.jpg"></a>
-    <a href="http://kuwo.cn"><img src="7.jpg"></a>
-    <a href="http://192.168.0.200/weather/index.php"><img src="8.jpg"></a>
-    <a href="http://search.5sing.kugou.com/"><img src="10.jpg"></a>
-    <a href="http://search.bilibili.com"><img src="3.jpg"></a>
-    <a href="https://zhouql.vip/bilibili/"><img src="9.jpg"></a>
-    <a href="http://douban.com"><img src="11.jpg"></a>
-    <a href="http://www.iciba.com"><img src="12.jpg"></a>
-  </div>
+<a href="http://baidu.com"><img src="2.jpg"></a>
+<a href="http://taobao.com"><img src="6.jpg"></a>
+<a href="http://kuwo.cn"><img src="7.jpg"></a>
+<a href="http://192.168.0.200/weather/index.php"><img src="8.jpg"></a>
+<a href="http://search.5sing.kugou.com/"><img src="10.jpg"></a>
+<a href="http://search.bilibili.com"><img src="3.jpg"></a>
+<a href="https://zhouql.vip/bilibili/"><img src="9.jpg"></a>
+<a href="http://douban.com"><img src="11.jpg"></a>
+<a href="http://www.iciba.com"><img src="12.jpg"></a>
+</div>
+
 </div>
 <script>
-  function dateTime(){
-    var date = new Date();
-    var dates = (date.getMonth()+1)>9?(date.getMonth()+1)+'-'+date.getDate():'0'+(date.getMonth()+1)+'-'+date.getDate();
-    var week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
-    var hours = date.getHours();
-    var minutes = date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes();
-    var times = hours>12?hours-12+':'+minutes+" PM":hours+':'+minutes+" AM";
-    var firstDivEle = document.querySelector('.firstDiv');
-    var lastDivEle = document.querySelector('.lastDiv');
-    firstDivEle.innerText=dates+' '+week[date.getDay()];
-    lastDivEle.innerText=times;
-  }
-  dateTime();
-  setInterval(dateTime,1000);
+function dateTime(){
+var date = new Date();
+var dates = (date.getMonth()+1)>9?(date.getMonth()+1)+'-'+date.getDate():'0'+(date.getMonth()+1)+'-'+date.getDate();
+var week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+var hours = date.getHours();
+var minutes = date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes();
+var times = hours>12?hours-12+':'+minutes+" PM":hours+':'+minutes+" AM";
+var firstDivEle = document.querySelector('.firstDiv');
+var lastDivEle = document.querySelector('.lastDiv');
+firstDivEle.innerText=dates+' '+week[date.getDay()];
+lastDivEle.innerText=times;
+}
+dateTime();
+setInterval(dateTime,1000);
 </script>
 </body>
 </html>
