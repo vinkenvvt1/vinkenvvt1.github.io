@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* css全局变量 */
+        :root {
+            --button-width: 60px;
+            --button-height: 30px;
+            --circle-d: 25px;
+            --circle-long-width: 40px;
+            --circle-d-offset: calc((var(--button-height) - var(--circle-d)) / 2);
+            --circle-shadow: 8px;
+            --color-grey: rgb(233, 233, 234);
+            --color-green: rgb(48, 209, 88);
+        }
+
+        html {
+            font-size: 44px;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-weight: 700;
+            color: #343434;
+        }
+
+        body:hover .clock_right label {
+            display: block;
+
+        }
+
+        .btn {
+            position: fixed;
+            right: 50px;
+            bottom: 20px;
+        }
+
+        .clock_right label {
+            transition: all .4s;
+            display: none;
+        }
+
+        .clock_right label span {
+            position: relative;
+            display: inline-block;
+            width: var(--button-width);
+            height: var(--button-height);
+            background-color: var(--color-grey);
+            border-radius: calc(var(--button-height)/2);
+            cursor: pointer;
+            transition: all .3x ease-in-out;
+        }
+
+        .clock_right label span::after {
+            content: "";
+            display: inline-block;
+            width: var(--circle-d);
+            height: var(--circle-d);
+            background-color: #fff;
+            border-radius: calc(var(--circle-d)/2);
+            position: absolute;
+            top: var(--circle-d-offset);
+            box-shadow: var(--circle-shadow) 0 calc(var(--circle-shadow) * 4) rgba(0, 0, 0, .10);
+            transform: translateX(var(--circle-d-offset));
+            transition: all .3s ease-in-out;
+        }
+
+        #click {
+            display: none;
+        }
+
+        #click:checked+span {
+            background-color: var(--color-green);
+        }
+
+        #click:checked+span::after {
+            transform: translateX(calc(var(--button-width) - var(--circle-d) - var(--circle-d-offset)));
+            box-shadow: calc(var(--circle-shadow) * -1) 0 calc(var(--circle-shadow) * 4) rgba(0, 0, 0, .10);
+        }
+
+        #click:active+span::after {
+            width: var(--circle-long-width);
+        }
+
+        #click:checked:active+span::after {
+            transform: translateX(calc(var(--button-width) - var(--circle-long-width) - var(--circle-d-offset)));
+        }
+
+        .clock_left {
+            flex: 1;
+            font-size: 4rem;
+            text-align: center;
+
+        }
+
+        .clock_left .dian {
+            animation: ones 1s linear infinite;
+        }
+
+        @keyframes ones {
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .clock_right {
+            flex: 1;
+            border-left: 1px dashed #ccc;
+        }
+
+        .clock_right .updown {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1rem;
+            color: #232323;
+        }
+
+        .clock_right>span {
+            font-size: 7rem;
+            display: block;
+            text-align: center;
+        }
+
+
+
+
+        @media screen and (max-width: 1000px) {
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* css全局变量 */
+            :root {
+                --button-width: 45px;
+                --button-height: 25px;
+                --circle-d: 23px;
+                --circle-long-width: 30px;
+                --circle-d-offset: calc((var(--button-height) - var(--circle-d)) / 2);
+                --circle-shadow: 4px;
+                --color-grey: rgb(233, 233, 234);
+                --color-green: rgb(48, 209, 88);
+            }
+
+            html {
+                font-size: 16px;
+            }
+
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                max-height: 100vh;
+                font-weight: 700;
+                color: #343434;
+            }
+
+            .btn {
+                position: fixed;
+                right: 50px;
+                bottom: 20px;
+
+            }
+
+            .clock_right label span {
+                position: relative;
+                display: inline-block;
+                width: var(--button-width);
+                height: var(--button-height);
+                background-color: var(--color-grey);
+                border-radius: calc(var(--button-height)/2);
+                cursor: pointer;
+                transition: all .3x ease-in-out;
+            }
+
+            .clock_right label span::after {
+                content: "";
+                display: inline-block;
+                width: var(--circle-d);
+                height: var(--circle-d);
+                background-color: #fff;
+                border-radius: calc(var(--circle-d)/2);
+                position: absolute;
+                top: var(--circle-d-offset);
+                box-shadow: var(--circle-shadow) 0 calc(var(--circle-shadow) * 4) rgba(0, 0, 0, .10);
+                transform: translateX(var(--circle-d-offset));
+                transition: all .3s ease-in-out;
+            }
+
+            #click {
+                display: none;
+            }
+
+            #click:checked+span {
+                background-color: var(--color-green);
+            }
+
+            #click:checked+span::after {
+                transform: translateX(calc(var(--button-width) - var(--circle-d) - var(--circle-d-offset)));
+                box-shadow: calc(var(--circle-shadow) * -1) 0 calc(var(--circle-shadow) * 4) rgba(0, 0, 0, .10);
+            }
+
+            #click:active+span::after {
+                width: var(--circle-long-width);
+            }
+
+            #click:checked:active+span::after {
+                transform: translateX(calc(var(--button-width) - var(--circle-long-width) - var(--circle-d-offset)));
+            }
+
+
+
+            .clock_left {
+                flex: 1;
+                font-size: 3rem;
+                text-align: center;
+
+            }
+
+            .clock_left .dian {
+                /*animation: ones 1s linear infinite;*/
+            }
+
+            @keyframes ones {
+                50% {
+                    opacity: 1;
+                }
+            }
+
+            .clock_right {
+                flex: 1;
+                border-left: 1px dashed #ccc;
+            }
+
+            .clock_right .updown {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 1rem;
+                color: #232323;
+            }
+
+            .clock_right>span {
+                font-size: 7rem;
+                display: block;
+                text-align: center;
+            }
+        }
+
+
+
+        @media screen and (max-width: 400px) {
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* css全局变量 */
+            :root {
+                --button-width: 35px;
+                --button-height: 20px;
+                --circle-d: 16px;
+                --circle-long-width: 25px;
+                --circle-d-offset: calc((var(--button-height) - var(--circle-d)) / 2);
+                --circle-shadow: 4px;
+                --color-grey: rgb(233, 233, 234);
+                --color-green: rgb(48, 209, 88);
+            }
+
+            html {
+                font-size: 14px;
+            }
+
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                max-height: 100vh;
+                font-weight: 700;
+                color: #343434;
+            }
+
+            .btn {
+                position: fixed;
+                right: 30px;
+                bottom: 20px;
+            }
+
+            .clock_right label span {
+                position: relative;
+                display: inline-block;
+                width: var(--button-width);
+                height: var(--button-height);
+                background-color: var(--color-grey);
+                border-radius: calc(var(--button-height)/2);
+                cursor: pointer;
+                transition: all .3x ease-in-out;
+            }
+
+            .clock_right label span::after {
+                content: "";
+                display: inline-block;
+                width: var(--circle-d);
+                height: var(--circle-d);
+                background-color: #fff;
+                border-radius: calc(var(--circle-d)/2);
+                position: absolute;
+                top: var(--circle-d-offset);
+                box-shadow: var(--circle-shadow) 0 calc(var(--circle-shadow) * 4) rgba(0, 0, 0, .10);
+                transform: translateX(var(--circle-d-offset));
+                transition: all .3s ease-in-out;
+            }
+
+            #click {
+                display: none;
+            }
+
+            #click:checked+span {
+                background-color: var(--color-green);
+            }
+
+            #click:checked+span::after {
+                transform: translateX(calc(var(--button-width) - var(--circle-d) - var(--circle-d-offset)));
+                box-shadow: calc(var(--circle-shadow) * -1) 0 calc(var(--circle-shadow) * 4) rgba(0, 0, 0, .10);
+            }
+
+            #click:active+span::after {
+                width: var(--circle-long-width);
+            }
+
+            #click:checked:active+span::after {
+                transform: translateX(calc(var(--button-width) - var(--circle-long-width) - var(--circle-d-offset)));
+            }
+
+
+
+            .clock_left {
+                flex: 1;
+                font-size: 3rem;
+                text-align: center;
+
+            }
+
+            .clock_left .dian {
+                animation: ones 1s linear infinite;
+            }
+
+            @keyframes ones {
+                0% {
+                    opacity: 0;
+                }
+
+                60% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            .clock_right {
+                flex: 1;
+                border-left: 1px dashed #ccc;
+            }
+
+            .clock_right .updown {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 1rem;
+                color: #232323;
+            }
+
+            .clock_right>span {
+                font-size: 7rem;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock_left">
+        <span class="hour">07</span>
+        <span class="dian">:</span>
+        <span class="minutes">02</span>
+    </div>
+    <div class="clock_right">
+        <span class="updown">PM</span>
+        <span class="seconds">23</span>
+        <label for="click" class="btn">
+            <input type="checkbox" id="click">
+            <span onclick="changeBg()"></span>
+        </label>
+    </div>
+
+    <script>
+        let hour = document.querySelector('.hour');
+        let minutes = document.querySelector('.minutes');
+        let updown = document.querySelector('.updown');
+        let seconds = document.querySelector('.seconds');
+
+        function clock() {
+            var date = new Date();
+            let h = date.getHours();
+            if (h > 12) {
+                h -= 12;
+                updown.innerHTML = "PM";
+            }
+            h = h < 10 ? '0' + h : h;
+            let m = date.getMinutes();
+            m = m < 10 ? '0' + m : m;
+            let s = date.getSeconds();
+            s = s < 10 ? '0' + s : s;
+
+            hour.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+        };
+        var i = 1;
+        function changeBg() {
+            let updown = document.querySelector('.updown');
+            if (i == 1) {
+                document.body.style.backgroundColor = "#232323";
+                document.body.style.color = "#fff";
+                updown.style.color = "#fff";
+                i = 0;
+            } else {
+                document.body.style.backgroundColor = "#fff";
+                document.body.style.color = "#343434";
+                updown.style.color = "#343434";
+                i = 1;
+            }
+        };
+        
+        clock();
+        setInterval(clock, 1000);
+    </script>
+
+
+</body></html>
