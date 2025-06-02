@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../skeleton.css">
+<style>
+body {background-color:#1c1b22;}
+.container {text-align:center;}
+ul {list-style:none;}
+li {display:inline-block;}
+table {border-radius:10px;border:1px solid #bbb;padding:10px;width:360px;}
+img,video,audio {border-radius:10px;border:1px solid #bbb;padding:10px;width:360px;background-color:#fff;}
+pre {text-align:left;border-radius:10px;border:1px solid #bbb;padding:10px;width:640px;background-color:#fff;font-size:14px;}
+.button {height:100%;font-size:32px;padding:20px;margin:2px;}
+.large {width:90%;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div>
+<ul>
+<li>
+<pre>
+
+=========安装archlinux
+cfdisk /dev/nvme0n1
+添加300M EFI，32G SWAP，剩余 Linux Partition
+mkfs.fat -F 32 /dev/nvme0n1p1
+mkswap /dev/nvme0n1p2
+mkfs.ext4 /dev/nvme0n1p3
+mount /dev/nvme0n1p3 /mnt
+mkdir /mnt/boot
+mount /dev/nvme0n1p1 /mnt/boot
+swapon /dev/nvme0n1p2
+vim /etc/pacman.d/mirrorlist
+Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+pacman -Syy
+pacstrap /mnt base linux linux-firmware gnome networkmanager
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+hwclock --systohc
+pacman -S vi
+vi /etc/locale.gen
+将en_US.UTF-8 取消注释
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+vi /etc/hostname
+输入archlinux
+vi /etc/hosts
+输入127.0.0.1 localhost
+passwd root
+输入root 重复root
+useradd user
+passwd user
+输入user 重复user
+mkdir /home/user
+chown user:user /home/user
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
+grub-mkconfig -o /boot/grub/grub.cfg
+systemctl enable gdm NetworkManager
+开机自动启动gnome和网络
+exit
+umount /mnt/boot
+umount /mnt
+reboot
+
+=========
+pacman -S ffmpeg4.4 ibus-libpinyin audacity mpv gimp krita pitivi soundconverter putty alacarte dconf-editor oniguruma gnome-boxes dnsutils dosfstools
+pacman -R totem gnome-weather
+cp /usr/lib/libcrypt.so /usr/lib/libcrypt.so.1
+
+=========text editor
+Check Spelling (disable)
+Restore Session (disable)
+=========/etc/fstab
+/dev/disk/by-uuid/325f09a3-6145-4c3c-a385-3da5d146ab46 /all_files ext4 defaults 0 1
+=========Mouse -> 1/3
+=========Power -> 15 minutes
+=========Displays -> 200hz -> scale 150%
+=========Wellbeing -> movement reminders 3/30
+=========Keyboard -> libpinyin
+=========字体
+cp /all_files/udisk/archlinux/*.ttf /usr/share/fonts/
+=========dconf-editor
+search "font-name" -> Dejavu Sans Mono 13
+search "font-name" -> Dejavu Sans Mono 11
+search "font-name" -> Dejavu Sans Mono 11
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+=========firefox
+Always check if Firefox is your default browser (disable)
+Fonts for Latin -> dejavu mono
+Fonts for Simplified Chinese -> dejavu mono
+Allow to choose own fonts (disable)
+Confirm before closing multiple tabs
+Save files to /all_files/downloads
+Login and Passwords (disable)
+=========/etc/hosts
+127.0.0.1 challenges.cloudflare.com
+127.0.0.1 www.google.com
+=========firefox bookmarks
+http://192.168.0.200/wallpaper/
+=========firefox
+Always check if Firefox is your default browser (disable)
+Fonts for Latin -> dejavu mono
+Fonts for Simplified Chinese -> dejavu mono
+Allow to choose own fonts (disable)
+Confirm before closing multiple tabs
+Save files to /all_files/downloads
+Login and Passwords (disable)
+=========Krita
+General -> File Handling -> autosaving (disable)
+General -> Miscellaneous -> undo stack size 1000
+fav -> eraser basic-1 /6px
+add purple #ae81ff
+columns 10x20 -> save
+
+</pre>
+</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>
+
