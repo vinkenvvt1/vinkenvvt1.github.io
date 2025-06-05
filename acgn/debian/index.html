@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../skeleton.css">
+<style>
+body {background-color:#1c1b22;}
+.container {text-align:center;}
+ul {list-style:none;}
+li {display:inline-block;}
+table {border-radius:10px;border:1px solid #bbb;padding:10px;width:360px;}
+img,video,audio {border-radius:10px;border:1px solid #bbb;padding:10px;width:360px;background-color:#fff;}
+pre {text-align:left;border-radius:10px;border:1px solid #bbb;padding:10px;width:640px;background-color:#fff;font-size:14px;}
+.button {height:100%;font-size:32px;padding:20px;margin:2px;}
+.large {width:90%;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div>
+<ul>
+<li>
+<pre>
+
+=========
+vi /etc/apt/sources.list
+deb http://mirrors.bfsu.edu.cn/debian trixie contrib main
+apt-get install ibus-libpinyin audacious audacity mpv gimp krita pitivi soundconverter putty alacarte dconf-editor gnome-boxes dnsutils dosfstools libonig5 nestopia
+apt-get remove firefox-esr totem gnome-weather packagekit
+
+=========text editor
+Check Spelling (disable)
+Restore Session (disable)
+=========/etc/fstab
+/dev/disk/by-uuid/325f09a3-6145-4c3c-a385-3da5d146ab46 /all_files ext4 defaults 0 1
+=========Mouse -> 1/3
+=========Power -> 15 minutes
+=========Displays -> 160hz -> scale 225%
+=========Wellbeing -> movement reminders 3/30
+=========Keyboard -> pinyin
+=========timezone
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+=========字体
+cp *.ttf /usr/share/fonts/
+=========dconf-editor
+search "font-name" -> Dejavu Sans Mono 13
+search "font-name" -> Dejavu Sans Mono 11
+search "font-name" -> Dejavu Sans Mono 11
+cd /usr/share/fonts/
+rm -rf truetype cmap cMap truetype opentype type1 X11
+=========menu
+firefox_135
+=========firefox bookmarks
+file:///all_files/untitled_index/index.html
+=========firefox
+Always check if Firefox is your default browser (disable)
+Fonts for Latin -> dejavu mono
+Fonts for Simplified Chinese -> dejavu mono
+Allow to choose own fonts (disable)
+Confirm before closing multiple tabs
+Save files to /all_files/downloads
+Login and Passwords (disable)
+=========Krita
+General -> File Handling -> autosaving (disable)
+General -> Miscellaneous -> undo stack size 1000
+fav -> eraser basic-1 /6px
+add purple #ae81ff
+columns 10x20 -> save
+
+</pre>
+</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>
+
